@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-size: 12px;
+}
+
+div.App {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 3.5em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 8px;
+  }
+
+  form {
+    width: 65%;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 7px;
+  }
+
+  form {
+    width: 85%;
+  }
+}
