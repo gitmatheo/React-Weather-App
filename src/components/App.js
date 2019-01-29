@@ -5,6 +5,8 @@ import HeroImage from "./HeroImage";
 import Loader from "./Loader";
 import Footer from "./Footer";
 import styled, { createGlobalStyle } from "styled-components";
+import { CSSTransition } from "react-transition-group";
+import "./App.css";
 
 //API KEY
 const APIKey = `098f9bf6c16084074659b3cfd6958052`;
@@ -29,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
 
 @media (max-width: 480px) {
   body {
-    font-size: 7px;
+    font-size: 7.5px;
   }
 }
 `;
@@ -61,7 +63,8 @@ class App extends Component {
     pressure: "",
     wind: "",
     error: "",
-    isLoading: false
+    isLoading: false,
+    appearResults: false
   };
 
   handleInputChange = e => {
@@ -101,6 +104,7 @@ class App extends Component {
           wind: data.wind.speed,
           city: prevState.value,
           isLoading: false,
+          appearResults: true,
           value: ""
         }));
       })
@@ -126,7 +130,18 @@ class App extends Component {
             className={this.state.afterLoading ? "active" : null}
           />
 
-          {this.state.isLoading ? <Loader /> : <Results weather={this.state} />}
+          {this.state.isLoading ? (
+            <Loader />
+          ) : (
+            <CSSTransition
+              in={this.state.appearResults}
+              appear={true}
+              timeout={1000}
+              classNames="fade"
+            >
+              <Results weather={this.state} />
+            </CSSTransition>
+          )}
           <Footer />
         </WeatherApp>
       </>
