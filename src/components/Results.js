@@ -28,6 +28,34 @@ const Result = props => {
     date
   } = props.weather;
 
+  const Cart = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 33.333%;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      color: white;
+    }
+    @media (max-width: 480px) {
+      width: 50%;
+    }
+  `;
+
+  const ResultsContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 80%;
+    height: 40vh;
+    margin: 50px auto;
+    transition: 0.3s;
+  `;
+
   let content = null;
   if (!error && city) {
     const sunriseTime = new Date(sunrise * 1000).toLocaleTimeString();
@@ -37,30 +65,32 @@ const Result = props => {
         <h3>
           Actual weather in <strong>{city}</strong>
         </h3>
-        <div>
-          <StyledI className="wi wi-time-5" />
-          Date and time: {date}
-        </div>
-        <div>
-          <StyledI className="wi wi-thermometer" />
-          Temperature: {temp} &#186;C
-        </div>
-        <div>
-          <StyledI className="wi wi-barometer" />
-          Pressure: {pressure} hPa
-        </div>
-        <div>
-          <StyledI className="wi wi-sunrise" />
-          Sunrise: {sunriseTime}
-        </div>
-        <div>
-          <StyledI className="wi wi-horizon" />
-          Sunset: {sunsetTime}
-        </div>
-        <div>
-          <StyledI className="wi wi-strong-wind" />
-          Wind speed: {wind} m/s
-        </div>
+        <ResultsContainer>
+          <Cart>
+            <StyledI className="wi wi-time-5" />
+            <p>Date and time: {date}</p>
+          </Cart>
+          <Cart>
+            <StyledI className="wi wi-thermometer" />
+            <p>Temperature: {temp} &#186;C</p>
+          </Cart>
+          <Cart>
+            <StyledI className="wi wi-barometer" />
+            <p>Pressure: {pressure} hPa</p>
+          </Cart>
+          <Cart>
+            <StyledI className="wi wi-sunrise" />
+            <p>Sunrise: {sunriseTime}</p>
+          </Cart>
+          <Cart>
+            <StyledI className="wi wi-horizon" />
+            <p>Sunset: {sunsetTime}</p>
+          </Cart>
+          <Cart>
+            <StyledI className="wi wi-strong-wind" />
+            <p>Wind speed: {wind} m/s</p>
+          </Cart>
+        </ResultsContainer>
       </div>
     );
   }

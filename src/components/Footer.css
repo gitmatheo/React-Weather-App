@@ -1,0 +1,12 @@
+i.fas,
+i.fab {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1em;
+  padding: 6px;
+  transition: 0.2s;
+}
+i.fas:hover,
+i.fab:hover {
+  transform: scale(1.2);
+  color: white;
+}

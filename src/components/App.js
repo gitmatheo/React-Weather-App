@@ -4,17 +4,51 @@ import Results from "./Results";
 import HeroImage from "./HeroImage";
 import Loader from "./Loader";
 import Footer from "./Footer";
-import { createGlobalStyle } from "styled-components";
-import "./App.css";
+import styled, { createGlobalStyle } from "styled-components";
 
+//API KEY
 const APIKey = `098f9bf6c16084074659b3cfd6958052`;
 
+//Styles for styled components
 const GlobalStyle = createGlobalStyle`
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
   body {
     color: ${props => (props.whiteColor ? "white" : "black")};
     font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
   }
+  @media (max-width: 768px) {
+  body {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 7px;
+  }
+}
 `;
+
+const Header = styled.h1`
+  font-size: 3.5em;
+  color: rgba(255, 255, 255, 0.8);
+`;
+
+const WeatherApp = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+`;
+
+//APP
 
 class App extends Component {
   state = {
@@ -73,6 +107,7 @@ class App extends Component {
       .catch(error => {
         this.setState(prevState => ({
           error: true,
+          isLoading: false,
           city: prevState.value
         }));
       });
@@ -82,17 +117,18 @@ class App extends Component {
       <>
         <GlobalStyle />
         <HeroImage />
-        <div className="App">
-          <h1>Simple React Weather App</h1>
+        <WeatherApp className="App">
+          <Header>Simple React Weather App</Header>
           <Form
             value={this.state.value}
             change={this.handleInputChange}
             submit={this.handleCitySubmit}
+            className={this.state.afterLoading ? "active" : null}
           />
 
           {this.state.isLoading ? <Loader /> : <Results weather={this.state} />}
           <Footer />
-        </div>
+        </WeatherApp>
       </>
     );
   }

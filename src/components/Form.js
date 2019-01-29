@@ -2,13 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 const MyForm = styled.form`
-  width: 50%;
+  width: 55%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  * {
+  & * {
     font-size: 2em;
+  }
+  @media (max-width: 1024px) {
+    width: 80%;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
   }
 `;
 
@@ -26,6 +33,7 @@ const Button = styled.button`
   &:hover {
     color: white;
     background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
   }
 `;
 
@@ -38,6 +46,7 @@ const Input = styled.input`
   width: 50%;
   padding: 10px;
   outline: none;
+  transition: 0.3s;
   &::placeholder {
     color: rgba(255, 255, 255, 0.6);
   }
@@ -47,7 +56,7 @@ const Input = styled.input`
 `;
 const Form = props => {
   return (
-    <MyForm onSubmit={props.submit}>
+    <MyForm onSubmit={props.submit} className={props.className}>
       <Input
         type="text"
         value={props.value}

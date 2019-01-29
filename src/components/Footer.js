@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../svg/logo.svg";
-
-const Logo = ({ src }) => <img src={`${logo}`} />;
+import "./Footer.css";
 
 const MyFooter = styled.div`
   position: fixed;
@@ -12,29 +11,35 @@ const MyFooter = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100px;
+  height: 50px;
   color: rgba(255, 255, 255, 0.9);
 `;
+
+const Logo = ({ src }) => <img src={`${logo}`} alt="logo" />;
+
 const MyLogo = styled(Logo)`
   width: 100%;
-  height: auto;
 `;
 
 const LogoWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 15%;
-  overflow: hidden;
-  // background-color: grey;
+  width: 10%;
+  padding-left: 3%;
 `;
 
 const Footer = () => {
   return (
     <MyFooter>
-      <h2>Created with ♥️ by Mateusz Dominiak</h2>
-      <LogoWrapper>
+      <h2>
+        Created with
+        <i class="fas fa-heart" />
+        by Mateusz Dominiak
+        <a href="https://github.com/gitmatheo">
+          <i class="fab fa-github" />
+        </a>
+      </h2>
+      {/* <LogoWrapper>
         <MyLogo />
-      </LogoWrapper>
+      </LogoWrapper> */}
     </MyFooter>
   );
 };
