@@ -105,10 +105,8 @@ const Result = props => {
           {results.map(element => (
             <Cart>
               <StyledI className={element.icon} />
-              <p>
-                {element.desc}
-                {element.response}
-              </p>
+              <p>{element.desc}</p>
+              <p>{element.response}</p>
             </Cart>
           ))}
         </ResultsContainer>
